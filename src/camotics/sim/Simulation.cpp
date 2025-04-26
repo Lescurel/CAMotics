@@ -52,7 +52,6 @@ string Simulation::computeHash() const {
   JSON::Writer writer(stream);
   write(writer);
 
-  stream.reset();
 
   return Base64().encode(sha256.finalize());
 }
