@@ -199,6 +199,7 @@ if env['with_gui']:
                            'qt/%s_dialog.ui' % dialog))
 
     # I18n
+    env.Append(LIBS=["icui18n", "icuuc" ])
     langs = Glob('languages/*.ts')
     regex = r'^.*camotics_(.*)\.ts$'
     langs = map(lambda path: re.sub(regex, r'\1', str(path)), langs)
@@ -221,7 +222,7 @@ if env['with_gui']:
     env.Append(BUILDERS = {'I18NQRC': env.Builder(action = build_i18n_qrc)})
     i18n_qrc = env.I18NQRC('build/i18n.qrc', qm_files)
     qrc = [env.Qrc('build/qrc_i18n.cpp', i18n_qrc)]
-
+    
     # Qt Resources
     qrc += [env.Qrc('build/qrc_camotics.cpp', 'qt/camotics.qrc')]
 
